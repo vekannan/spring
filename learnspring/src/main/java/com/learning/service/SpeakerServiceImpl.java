@@ -2,14 +2,9 @@ package com.learning.service;
 
 import com.learning.model.Speaker;
 import com.learning.repository.SpeakerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
 import java.util.List;
 
-@Service("speakerService")
-@Scope(value = BeanDefinition.SCOPE_SINGLETON)
+
 public class SpeakerServiceImpl implements SpeakerService {
 
     private SpeakerRepository repository;
@@ -18,12 +13,17 @@ public class SpeakerServiceImpl implements SpeakerService {
 
     }
 
+    public SpeakerServiceImpl(SpeakerRepository repository) {
+        System.out.println(repository);
+        this.repository = repository;
+    }
+
     public List<Speaker> findAll() {
         return repository.findAll();
     }
 
-    @Autowired
-    public void setRepository(SpeakerRepository repository) {
+
+    public void setSpeakerRepository(SpeakerRepository repository) {
         System.out.println(repository);
         this.repository = repository;
     }
